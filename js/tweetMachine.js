@@ -211,11 +211,15 @@
                                 if ( tweets[0] ) {
                                     // If there is an error message
                                     if ( tweets[0].message ) {
-                                        /*
-                                         * TODO Handle 
-                                         */
-                                        console.log(tweets[0].message);
-                                        console.log("Error code: " + tweets[0].code);
+                                        // If there is already an error displayed
+                                        if ( $('.twitter-error').length ) {
+                                            // Update the error message
+                                            $('.twitter-error').html('<p class="tweet-machine-error">Error  ' + tweets[0].code + ': ' + tweets[0].message + '</p>');
+                                        }
+                                        else { // There isn't an error displayed yet
+                                            // Display an error message above the container
+                                            $(tweetMachine.container).before('<p class="twitter-error">Error  ' + tweets[0].code + ': ' + tweets[0].message + '</p>');
+                                        }
                                     }
                                     // There are tweets
                                     else {
