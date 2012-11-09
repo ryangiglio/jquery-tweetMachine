@@ -3,8 +3,6 @@
  *
  * Copyright (c) 2012 Ryan Giglio (@ryangiglio)
  */
-
-// Wrapper to make sure the $ is a clean jQuery object
 (function ($) {
     // Plugin body
 	$.fn.tweetMachine = function (query, options, callback) {
