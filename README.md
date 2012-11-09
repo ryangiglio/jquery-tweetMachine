@@ -6,7 +6,7 @@ With a forced switch to Twitter API v1.1 on the horizon (March 5th, 2013), it's 
 
 I've been a huge fan of [jQuery LiveTwitter](http://elektronaut.github.com/jquery.livetwitter/) by [elektronaut](https://github.com/elektronaut) for years now, but it would have to be reworked to include a server side component. In my development of [The Social Prompter](http://thesocialprompter.com/) I needed to come up with a futureproof solution, so I decided to rewrite the plugin with a roll-your-own backend setup.
 
-A huge amount of credit goes to [elektronaut](https://github.com/elektronaut), since a great deal of his code has found its way into this plugin. I've added some new features beyond the backend section, but Tweet Machine is jQuery LiveTwitter v2.0 in spirit.
+A huge amount of credit goes to [elektronaut](https://github.com/elektronaut), since a great deal of his code has found its way into this plugin. I've added some new features (or rather plan to add some new features) beyond the backend section, but Tweet Machine is jQuery LiveTwitter v2.0 in spirit.
 
 ## Javascript setup
 The Javascript portion of Tweet Machine is quite simple to set up. Simply call the .tweetMachine function on an empty container:
