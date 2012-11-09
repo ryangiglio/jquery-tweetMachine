@@ -223,6 +223,12 @@
                                     }
                                     // There are tweets
                                     else {
+                                        // If there was an error before
+                                        if ( $('.twitter-error').length ) {
+                                            // Remove it
+                                            $('.twitter-error').remove();
+                                        }
+
                                         // Reverse them so they are added in the correct order
                                         tweets.reverse();
 
