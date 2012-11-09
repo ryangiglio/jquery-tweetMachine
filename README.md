@@ -33,13 +33,15 @@ Sample scripts in different languages are coming soon. If you're interested in c
     // Twitter API endpoint to call. Currently only search/tweets is supported
     endpoint:       'search/tweets'
 
-    // Rate in ms to refresh the tweets. The 'search/tweets' endpoint has a rate limit of 180 calls per 15 minutes, so any higher than 5000 will get you rate limited
+    // Rate in ms to refresh the tweets. The 'search/tweets' endpoint has a rate limit of 180 calls per 15 minutes,
+    // so any higher than 5000 will get you rate limited
     rate:           5000
 
     // Number of tweets to display at a time
     limit:          5
 
-    // Number of tweets to get from Twitter per request. By default this is the same as the number of tweets displayed, but increase it if you're filtering tweets so you don't come up short in case some get filtered out
+    // Number of tweets to get from Twitter per request. By default this is the same as the number of tweets displayed,
+    // but increase it if you're filtering tweets so you don't come up short in case some get filtered out
     requestLimit:   limit          
 
     // CURRENTLY REQUIRED. Auto-refresh the tweets
@@ -52,7 +54,15 @@ Sample scripts in different languages are coming soon. If you're interested in c
     animateIn:      true 
 
     // Format for the tweet objects. Any structure will work, but the class names are required
-    tweetFormat: "<li class='tweet'><img class='avatar' src=''/><div class='meta'><a href='' class='username'></a><a href='' class='time'></a></div><p class='content'></p></li>", // Format for each tweet
+    tweetFormat: // Format for each tweet
+        "<li class='tweet'>
+            <img class='avatar' src=''/>
+            <div class='meta'>
+                <a href='' class='username'></a>
+                <a href='' class='time'></a>
+            </div>
+            <p class='content'></p>
+        </li>", 
 
     // Verbiage to use for timestamps
     localization: { 
