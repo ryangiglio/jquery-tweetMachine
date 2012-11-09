@@ -1,30 +1,16 @@
-= jQuery Tweet Machine
-A jQuery plugin that allows you to create a streaming Twitter feed using their new REST API v1.1. Roll your own backend or use one of our sample implementations (currently PHP only, Ruby and Python coming soon) to get up and running as fast as possible.
-
-== About
-With a forced switch to Twitter API v1.1 on the horizon (March 5th, 2013), it's no longer possible to make any unauthenticated calls. This means you now need a backend component to perform what was once possible pure Javascript (lest exposing your secret keys), and unfortunately also means the end of the road for some wonderful and easy to implement jQuery plugins.
-
-I've been a huge fan of [jQuery LiveTwitter](http://elektronaut.github.com/jquery.livetwitter/) by [elektronaut](https://github.com/elektronaut) for years now, but it would have to be reworked to include a server side component. In my development of (The Social Prompter)[http://thesocialprompter.com/] I needed to come up with a futureproof solution, so I decided to rewrite the plugin with a roll-your-own backend setup.
-
-A huge amount of credit goes to [elektronaut](https://github.com/elektronaut), since a great deal of his code has found its way into this plugin. I've added some new features beyond the backend section, but Tweet Machine is jQuery LiveTwitter v2.0 in spirit.
-
-== Javascript setup
-The Javascript portion of Tweet Machine is quite simple to set up. Simply call the .tweetMachine function on an empty container:
-
-    $('#tweets').tweetMachine('#bieber');
-
+# jQuery Tweet Machin
 By default, the plugin uses a backend script located at `/ajax/getFromTwitter.php`. This is the sample script that is provided and should be sufficient for most LAMP implementations. If you would like to use your own script or save it in a different folder, you can do that using the backendScript option:
 
     $('#tweets').tweetMachine('#bieber', { backendScript: '/inc/newBackend.php' );
 
 A complete list of options is at the bottom of this readme
 
-== Backend setup
+## Backend setup
 Complete instructions for setting up the sample backend script is located in the `ajax/getFromTwitter.php` file. If you'd like to roll your own script, simply ensure that it returns the JSON array of tweets that you get back from the Twitter API.
 
 Sample scripts in different languages are coming soon. If you're interested in creating one, please feel free!
 
-== Options
+## Options
     // Path to your backend script that holds your Twitter credentials and calls the API
     backendScript:  '/ajax/getFromTwitter.php'
 
@@ -66,9 +52,9 @@ Sample scripts in different languages are coming soon. If you're interested in c
     // Function to filter tweet results. 
     filter:         false
 
-== Advanced options
+## Advanced options
 
-=== Filtering tweets
+### Filtering tweets
 
 You can filter tweets by providing a function that returns true if a tweet is to be shown and false if it isn't. Here's a silly foul language filter:
 
@@ -91,8 +77,8 @@ You can filter tweets by providing a function that returns true if a tweet is to
         }
     });
 
-== Changelog
+## Changelog
 
-=== `v0.1a`
+### `v0.1a`
 
 - Initial commit
