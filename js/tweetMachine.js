@@ -207,69 +207,77 @@
 							}, function (tweets) {
 								var tweetsDisplayed;
 
-                                /*
-                                 * TODO Handle rate limiting instead of assuming there will be tweets
-                                 */
-                                // If there are tweets
-								if (tweets.length !== 0) {
-                                    // Reverse them so they are added in the correct order
-									tweets.reverse();
+                                // If we got a response from Twitter
+                                if ( tweets[0] ) {
+                                    // If there is an error message
+                                    if ( tweets[0].message ) {
+                                        /*
+                                         * TODO Handle 
+                                         */
+                                        console.log(tweets[0].message);
+                                        console.log("Error code: " + tweets[0].code);
+                                    }
+                                    // There are tweets
+                                    else {
+                                        // Reverse them so they are added in the correct order
+                                        tweets.reverse();
 
-                                    // Count the number of tweets displayed
-									tweetsDisplayed = 0;
+                                        // Count the number of tweets displayed
+                                        tweetsDisplayed = 0;
 
-                                    // Loop through each tweet
-									$.each(tweets, function () {
-										var tweet, tweetObj;
-										tweet = this;
+                                        // Loop through each tweet
+                                        $.each(tweets, function () {
+                                            var tweet, tweetObj;
+                                            tweet = this;
 
-                                        // If there is no filter, or this tweet passes the filter
-										if (!tweetMachine.settings.filter || tweetMachine.settings.filter(this)) {
-                                            // Build the tweet as a jQuery object
-											tweetObj = tweetMachine.buildTweet(tweet);
+                                            // If there is no filter, or this tweet passes the filter
+                                            if (!tweetMachine.settings.filter || tweetMachine.settings.filter(this)) {
+                                                // Build the tweet as a jQuery object
+                                                tweetObj = tweetMachine.buildTweet(tweet);
 
-                                            // If there are already tweets on the screen
-											if (!firstLoad) {
+                                                // If there are already tweets on the screen
+                                                if (!firstLoad) {
 
-                                                // If we are animating out the old tweets
-												if (tweetMachine.settings.animateOut) {
+                                                    // If we are animating out the old tweets
+                                                    if (tweetMachine.settings.animateOut) {
+                                                        /*
+                                                         * TODO Support this feature
+                                                         */
+                                                    } else { // We are not animating the old tweets
+                                                        // Remove them
+                                                        $(tweetMachine.container).children(':last-child').remove();
+                                                    }
+                                                }
+
+                                                // Prepend the new tweet
+                                                $(tweetMachine.container).prepend(tweetObj);
+
+                                                // If we are animating in the new tweets
+                                                if (tweetMachine.settings.animateIn) {
+                                                    // Fade in the new tweet
                                                     /*
-                                                     * TODO Support this feature
+                                                     * TODO Figure out why .fadeIn() doesn't work
                                                      */
-												} else { // We are not animating the old tweets
-                                                    // Remove them
-													$(tweetMachine.container).children(':last-child').remove();
-												}
-											}
+                                                    $(tweetMachine.container).children(':first-child').animate({
+                                                        opacity: 1
+                                                    });
+                                                }
 
-                                            // Prepend the new tweet
-											$(tweetMachine.container).prepend(tweetObj);
-
-                                            // If we are animating in the new tweets
-											if (tweetMachine.settings.animateIn) {
-                                                // Fade in the new tweet
-                                                /*
-                                                 * TODO Figure out why .fadeIn() doesn't work
-                                                 */
-												$(tweetMachine.container).children(':first-child').animate({
-													opacity: 1
-												});
-											}
-
-                                            // Increment the tweets diplayed
-											tweetsDisplayed++;
-                                            
-                                            // Save this tweet ID so we only get newer noes
-											tweetMachine.lastTweetID = tweet.id_str;
-                                            
-                                            // If we've reached the limit of tweets to display
-											if (tweetsDisplayed > tweetMachine.settings.limit) {
-                                                // Quit the loop
-												return false;
-											}
-										}
-									});
-								}
+                                                // Increment the tweets diplayed
+                                                tweetsDisplayed++;
+                                                
+                                                // Save this tweet ID so we only get newer noes
+                                                tweetMachine.lastTweetID = tweet.id_str;
+                                                
+                                                // If we've reached the limit of tweets to display
+                                                if (tweetsDisplayed > tweetMachine.settings.limit) {
+                                                    // Quit the loop
+                                                    return false;
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
 							});
 						}
                         /* TODO: Implement an "x new Tweets, click to refresh" link if auto refresh is turned off

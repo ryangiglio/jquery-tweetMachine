@@ -30,10 +30,10 @@
     // NOTE: These keys are provided so the sample.html file can run. Don't use
     // them in a production environment because the rate limit will be lumped
     // in with everyone else testing the plugin
-    $consumerKey        = 'PhzyE5PHeU2kA0O0PJ6tRQ';
-    $consumerSecret     = 'GoTC9U4g4kt1Y04U5QMHQOx1FG00cmvEgfJKZpAHk';
-    $accessToken        = '80357329-yagx966GbLPSAbYlzoAtj4BpnO3YofGZFLrqG5ZeQ';
-    $accessTokenSecret  = 'd3pLxnSX0C72474pnASrtoXLzhQ5R3xlZ5nDyz1H0';
+    $consumerKey        = 'Lcue9qrjJlLBzZXS0jYoQ';
+    $consumerSecret     = 'rkPTvgh8nwvCULeKeuB6wgET9isQrKeJdi2f0x3PnQU';
+    $accessToken        = '80357329-wUWqRGSgqGFxu6ozgFiGoE4Dz32tzqnMrENU3jcUf';
+    $accessTokenSecret  = '2EEPSyDHldG0fHRJbBeKVEmsLWAR3Y17YVTtHebozs';
 
     /* END SETUP ==========================================================*/
     
@@ -60,6 +60,12 @@
     $tweets = $connection->get($endpoint, $queryParams);
 
     /*
-     * Print out the tweets in a JSON array.
+     * If Twitter returned statuses, the request was successful
      */
-    echo json_encode($tweets->statuses);
+    if ( isset($tweets->statuses) ) {
+        echo json_encode($tweets->statuses);
+    }
+    else { // There was a problem somewhere
+        // Return the error Twitter sent so Javascript can parse it and display the error
+        echo json_encode($tweets->errors);
+    }
