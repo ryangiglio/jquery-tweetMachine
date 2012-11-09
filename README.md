@@ -15,7 +15,9 @@ The Javascript portion of Tweet Machine is quite simple to set up. Simply call t
 
 By default, the plugin uses a backend script located at `/ajax/getFromTwitter.php`. This is the sample script that is provided and should be sufficient for most LAMP implementations. If you would like to use your own script or save it in a different folder, you can do that using the backendScript option:
 
-    $('#tweets').tweetMachine('#bieber', { backendScript: '/inc/newBackend.php' );
+    $('#tweets').tweetMachine('#bieber',
+        { backendScript: '/inc/newBackend.php' }
+    );
 
 A complete list of options is at the bottom of this readme
 
@@ -61,7 +63,7 @@ Sample scripts in different languages are coming soon. If you're interested in c
         hours:      'hours ago',
         day:        'a day ago',
         days:       'days ago'
-    },
+    }
 
     // Function to filter tweet results. 
     filter:         false
@@ -72,7 +74,7 @@ Sample scripts in different languages are coming soon. If you're interested in c
 
 You can filter tweets by providing a function that returns true if a tweet is to be shown and false if it isn't. Here's a silly foul language filter:
 
-    swearList = ["frack", "darn", "gosh", "shucks", "shoot", "dang", "fudge", "mother trucker"];
+    var swearList = ["frack", "darn", "gosh", "shucks", "shoot", "dang", "fudge", "mother trucker"];
 
     $('#tweets').tweetMachine( '#puppy', {
         filter: function(tweet) {
@@ -96,4 +98,3 @@ You can filter tweets by providing a function that returns true if a tweet is to
 ### `v0.1a`
 
 - Initial commit
-
