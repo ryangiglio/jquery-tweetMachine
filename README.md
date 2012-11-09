@@ -2,7 +2,7 @@
 A jQuery plugin that allows you to create a streaming Twitter feed using their new REST API v1.1. Roll your own backend or use one of the sample implementations (currently PHP only, Ruby and Python coming soon) to get up and running as fast as possible.
 
 ## About
-With a forced switch to Twitter API v1.1 on the horizon (March 5th, 2013), it's no longer possible to make any unauthenticated calls. This means you now need a backend component to perform what was once possible pure Javascript (lest exposing your secret keys), and unfortunately also means the end of the road for some wonderful and easy to implement jQuery plugins.
+With a forced switch to Twitter API v1.1 on the horizon (March 5th, 2013), it's no longer possible to make any unauthenticated calls. This means you now need a backend component to perform what was once possible with pure Javascript (lest exposing your secret keys), and unfortunately also means the end of the road for some wonderful and easy to implement jQuery plugins.
 
 I've been a huge fan of [jQuery LiveTwitter](http://elektronaut.github.com/jquery.livetwitter/) by [elektronaut](https://github.com/elektronaut) for years now, but it would have to be reworked to include a server side component. In my development of [The Social Prompter](http://thesocialprompter.com/) I needed to come up with a futureproof solution, so I decided to rewrite the plugin with a roll-your-own backend setup.
 
