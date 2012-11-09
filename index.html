@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Jquery-tweetmachine by ryangiglio</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Jquery-tweetmachine</h1>
+          <h2>A jQuery plugin that allows you to create a streaming Twitter feed using their new REST API v1.1</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/ryangiglio/jquery-tweetMachine/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/ryangiglio/jquery-tweetMachine/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/ryangiglio/jquery-tweetMachine" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>jQuery Tweet Machine</h1>
+
+<p>A jQuery plugin that allows you to create a streaming Twitter feed using their new REST API v1.1. Roll your own backend or use one of the sample implementations (currently PHP only, Ruby and Python coming soon) to get up and running as fast as possible.</p>
+
+<h2>About</h2>
+
+<p>With a forced switch to Twitter API v1.1 on the horizon (March 5th, 2013), it's no longer possible to make any unauthenticated calls. This means you now need a backend component to perform what was once possible with pure Javascript (lest exposing your secret keys), and unfortunately also means the end of the road for some wonderful and easy to implement jQuery plugins.</p>
+
+<p>I've been a huge fan of <a href="http://elektronaut.github.com/jquery.livetwitter/">jQuery LiveTwitter</a> by <a href="https://github.com/elektronaut">elektronaut</a> for years now, but it would have to be reworked to include a server side component. In my development of <a href="http://thesocialprompter.com/">The Social Prompter</a> I needed to come up with a futureproof solution, so I decided to rewrite the plugin with a roll-your-own backend setup.</p>
+
+<p>A huge amount of credit goes to <a href="https://github.com/elektronaut">elektronaut</a>, since a great deal of his code has found its way into this plugin. I've added some new features (or rather plan to add some new features) beyond the backend section, but Tweet Machine is jQuery LiveTwitter v2.0 in spirit.</p>
+
+<h2>Javascript setup</h2>
+
+<p>The Javascript portion of Tweet Machine is quite simple to set up. Simply call the .tweetMachine function on an empty container:</p>
+
+<pre><code>$('#tweets').tweetMachine('#bieber');
+</code></pre>
+
+<p>By default, the plugin uses a backend script located at <code>/ajax/getFromTwitter.php</code>. This is the sample script that is provided and should be sufficient for most LAMP implementations. If you would like to use your own script or save it in a different folder, you can do that using the backendScript option:</p>
+
+<pre><code>$('#tweets').tweetMachine('#bieber',
+    { backendScript: '/inc/newBackend.php' }
+);
+</code></pre>
+
+<p>A complete list of options is at the bottom of this readme</p>
+
+<h2>Backend setup</h2>
+
+<p>Complete instructions for setting up the sample backend script is located in the <code>ajax/getFromTwitter.php</code> file. If you'd like to roll your own script, simply ensure that it returns the JSON array of tweets that you get back from the Twitter API.</p>
+
+<p>Sample scripts in different languages are coming soon. If you're interested in creating one, please feel free!</p>
+
+<h2>Options</h2>
+
+<pre><code>// Path to your backend script that holds your Twitter credentials and calls the API
+backendScript:  '/ajax/getFromTwitter.php'
+
+// Twitter API endpoint to call. Currently only search/tweets is supported
+endpoint:       'search/tweets'
+
+// Rate in ms to refresh the tweets. The 'search/tweets' endpoint has a rate limit of 180 calls per 15 minutes,
+// so any higher than 5000 will get you rate limited
+rate:           5000
+
+// Number of tweets to display at a time
+limit:          5
+
+// Number of tweets to get from Twitter per request. By default this is the same as the number of tweets displayed,
+// but increase it if you're filtering tweets so you don't come up short in case some get filtered out
+requestLimit:   limit          
+
+// CURRENTLY REQUIRED. Auto-refresh the tweets
+autoRefresh:    true
+
+// NOT YET SUPPORTED. Animate out old tweets
+animateOut:     false
+
+// Fade in new tweets
+animateIn:      true 
+
+// Format for the tweet objects. Any structure will work, but the class names are required
+tweetFormat: // Format for each tweet
+    "&lt;li class='tweet'&gt;
+        &lt;img class='avatar' src=''/&gt;
+        &lt;div class='meta'&gt;
+            &lt;a href='' class='username'&gt;&lt;/a&gt;
+            &lt;a href='' class='time'&gt;&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;p class='content'&gt;&lt;/p&gt;
+    &lt;/li&gt;"
+
+// Verbiage to use for timestamps
+localization: { 
+    seconds:    'seconds ago',
+    minute:     'a minute ago',
+    minutes:    'minutes ago',
+    hour:       'an hour ago',
+    hours:      'hours ago',
+    day:        'a day ago',
+    days:       'days ago'
+}
+
+// Function to filter tweet results. 
+filter:         false
+</code></pre>
+
+<h2>Advanced options</h2>
+
+<h3>Filtering tweets</h3>
+
+<p>You can filter tweets by providing a function that returns true if a tweet is to be shown and false if it isn't. Here's a silly foul language filter:</p>
+
+<pre><code>var swearList = ["frack", "darn", "gosh", "shucks", "shoot", "dang", "fudge", "mother trucker"];
+
+$('#tweets').tweetMachine( '#puppy', {
+    filter: function(tweet) {
+        var swear, i, len;
+        // Loop through the swears in the list
+        for ( i = 0, len = swearList.length; i &lt; len; i++ ) {
+            swear = swearList[i];
+            // If the tweet's text has the swear in it
+            if (tweet.text.indexOf(swear) !== -1) {
+                // Don't show it
+                return false;
+            }
+        }
+        // If it hasn't had any swears, show it
+        return true;
+    }
+});
+</code></pre>
+
+<h2>Changelog</h2>
+
+<h3><code>v0.1a</code></h3>
+
+<ul>
+<li>Initial commit</li>
+</ul>
+        </section>
+
+        <footer>
+          Jquery-tweetmachine is maintained by <a href="https://github.com/ryangiglio">ryangiglio</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
