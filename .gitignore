@@ -1,0 +1,10 @@
+.*.sw[a-z]
+*.un~
+Session.vim
+.netrwhist
+
+coffee/tweetMachine.oldcoffee.coffee
+
+js/jquery.livetwitter.js
+
+js/jquery.livetwitter.min.js
