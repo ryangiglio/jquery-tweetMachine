@@ -62,7 +62,7 @@ Sample scripts in different languages are coming soon. If you're interested in c
                 <a href='' class='time'></a>
             </div>
             <p class='content'></p>
-        </li>", 
+        </li>"
 
     // Verbiage to use for timestamps
     localization: { 
