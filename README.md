@@ -85,7 +85,7 @@ Sample scripts in different languages are coming soon. If you're interested in c
 You can specify a callback function. The function gets the tweets collection as first parameter and the number of tweets displayed as the second. 
 This is an example where we handle the case where no tweets are found and a loading notice that shows before the first tweets are loaded.
 
-    $('#sf-twitter-feed').tweetMachine('#test',	{},
+    $('#tweets').tweetMachine('#test',	{},
         function(tweets, tweetsDisplayed) {
 		    //Remove the loading notice
             $('#twitter-placeholder').fadeOut();
@@ -94,7 +94,6 @@ This is an example where we handle the case where no tweets are found and a load
 			    //Show no tweets found notice
                 $('#sf-twitter-feed').append('<p class="no-tweets-notice">No tweets found</p>')
             }
-
         }
     );
 
