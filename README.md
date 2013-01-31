@@ -92,7 +92,7 @@ This is an example where we handle the case where no tweets are found and a load
             if(tweetsDisplayed <= 0)
             {
 			    //Show no tweets found notice
-                $('#sf-twitter-feed').append('<p class="no-tweets-notice">No tweets found</p>')
+                $('#sf-twitter-feed').html('<p class="no-tweets-notice">No tweets found</p>')
             }
         }
     );
