@@ -118,7 +118,7 @@
 							timeElement.html(tweetMachine.relativeTime(originalTime));
 						});
 					},
-
+					
                     /*
                      * Function to parse the text of a tweet and and add links to links, hashtags, and usernames
                      */
@@ -288,14 +288,20 @@
                                         });
                                     }
                                 }
+								//Callback function
+								if (typeof tweetMachine.callback == "function") {
+									if(typeof tweets == 'undefined' || typeof tweetsDisplayed == 'undefined' ) {
+										tweets = null;
+										tweetsDisplayed = 0;
+									}
+									tweetMachine.callback(tweets, tweetsDisplayed); 
+								}
 							});
 						}
                         /* TODO: Implement an "x new Tweets, click to refresh" link if auto refresh is turned off
                         else {
                         }
                         */
-
-                        /* TODO: Implement the callback function */
 					},
 
                     // Start refreshing

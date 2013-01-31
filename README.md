@@ -80,6 +80,24 @@ Sample scripts in different languages are coming soon. If you're interested in c
 
 ## Advanced options
 
+### Callback
+
+You can specify a callback function. The function gets the tweets collection as first parameter and the number of tweets displayed as the second. 
+This is an example where we handle the case where no tweets are found and a loading notice that shows before the first tweets are loaded.
+
+    $('#tweets').tweetMachine('#test',	{},
+        function(tweets, tweetsDisplayed) {
+		    //Remove the loading notice
+            $('#twitter-placeholder').fadeOut();
+            if(tweetsDisplayed <= 0)
+            {
+			    //Show no tweets found notice
+                $('#sf-twitter-feed').html('<p class="no-tweets-notice">No tweets found</p>')
+            }
+        }
+    );
+
+
 ### Filtering tweets
 
 You can filter tweets by providing a function that returns true if a tweet is to be shown and false if it isn't. Here's a silly foul language filter:
