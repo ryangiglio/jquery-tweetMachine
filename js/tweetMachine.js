@@ -57,7 +57,7 @@
 					interval: false, // This will hold the refresh interval when it is created
 					container: this, // Set the object that contains the tweets
 					lastTweetID: null, // This will hold the ID of the last tweet displayed
-					callback: callback, // NOT YET SUPPORTED. This callback will run after each refresh
+					callback: callback, // This callback will run after each refresh
 
                     /*
                      * Function to generate a relative timestamp from Twitter's time string
@@ -289,12 +289,12 @@
                                     }
                                 }
 								//Callback function
-								if (typeof tweetMachine.callback == "function") {
-									if(typeof tweets == 'undefined' || typeof tweetsDisplayed == 'undefined' ) {
+								if (typeof tweetMachine.callback === "function") {
+									if(typeof tweets === 'undefined' || typeof tweetsDisplayed === 'undefined' ) {
 										tweets = null;
 										tweetsDisplayed = 0;
 									}
-									tweetMachine.callback(tweets, tweetsDisplayed); 
+									tweetMachine.callback(tweets, tweetsDisplayed);
 								}
 							});
 						}
