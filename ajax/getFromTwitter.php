@@ -10,7 +10,7 @@
      * but you can always download the latest version from:
      * https://github.com/abraham/twitteroauth
      */
-    include $_SERVER['DOCUMENT_ROOT'] . '/inc/twitteroauth/twitteroauth.php';
+    include '../inc/twitteroauth/twitteroauth.php';
 
     /*  BEGIN SETUP ============================================================
     

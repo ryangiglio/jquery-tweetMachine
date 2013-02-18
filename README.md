@@ -123,6 +123,10 @@ You can filter tweets by providing a function that returns true if a tweet is to
 
 ## Changelog
 
+### `v0.2.1a`
+
+- Changed file paths so the script doesn't have to be installed in the root
+
 ### `v0.2a`
 
 - Added callback (thanks [pelmered](https://github.com/pelmered))

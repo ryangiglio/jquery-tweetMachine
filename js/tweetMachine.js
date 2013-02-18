@@ -1,7 +1,7 @@
 /*
- * jQuery TweetMachine v0.1a
+ * jQuery TweetMachine v0.2.1a
  *
- * Copyright (c) 2012 Ryan Giglio (@ryangiglio)
+ * Copyright (c) 2013 Ryan Giglio (@ryangiglio)
  */
 (function ($) {
     // Plugin body
@@ -32,7 +32,7 @@
 				}
 			} else { // It's not initialized, so let's do that
 				settings = $.extend({
-					backendScript:  '/ajax/getFromTwitter.php', // Path to your backend script that holds your Twitter credentials and calls the API
+					backendScript:  'ajax/getFromTwitter.php', // Path to your backend script that holds your Twitter credentials and calls the API
 					endpoint:       'search/tweets', // Twitter API endpoint to call. Currently only search/tweets is supported
 					rate:           5000, // Rate in ms to refresh the tweets. Any higher than 5000 for search/tweets will get you rate limited
 					limit:          5, // Number of tweets to display at a time
