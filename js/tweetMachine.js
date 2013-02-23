@@ -66,87 +66,87 @@
 						var delta, parsedDate, r;
                         
                         // Create a Date object
-						parsedDate = Date.parse(timeString);
+		        parsedDate = Date.parse(timeString);
 
                         // Get the number of seconds ago that the tweet was created
-						delta = (Date.parse(Date()) - parsedDate) / 1000;
+			delta = (Date.parse(Date()) - parsedDate) / 1000;
                         
                         // String to hold the relative time
-						r = '';
+			r = '';
 
                         // If it was less than a minute ago
-						if (delta < 60) {
-							r = delta + " " + settings.localization.seconds;
+			if (delta < 60) {
+				r = delta + " " + settings.localization.seconds;
                         // If it was less than 2 minutes ago
-						} else if (delta < 120) {
-							r = settings.localization.minute;
+			} else if (delta < 120) {
+				r = settings.localization.minute;
                         // If it was less than 45 minutes ago
-						} else if (delta < (45 * 60)) {
-							r = (parseInt(delta / 60, 10)).toString() + " " + settings.localization.minutes;
+			} else if (delta < (45 * 60)) {
+				r = (parseInt(delta / 60, 10)).toString() + " " + settings.localization.minutes;
                         // If it was less than 90 minutes ago
-						} else if (delta < (90 * 60)) {
-							r = settings.localization.hour;
+			} else if (delta < (90 * 60)) {
+				r = settings.localization.hour;
                         // If it was less than a day ago
-						} else if (delta < (24 * 60 * 60)) {
-							r = '' + (parseInt(delta / 3600, 10)).toString() + " " + settings.localization.hours;
+			} else if (delta < (24 * 60 * 60)) {
+				r = '' + (parseInt(delta / 3600, 10)).toString() + " " + settings.localization.hours;
                         // If it was less than 2 days ago
-						} else if (delta < (48 * 60 * 60)) {
-							r = settings.localization.day;
-						} else {
-							r = (parseInt(delta / 86400, 10)).toString() + " " + settings.localization.days;
-						}
-						return r;
-					},
+			} else if (delta < (48 * 60 * 60)) {
+				r = settings.localization.day;
+			} else {
+			        r = (parseInt(delta / 86400, 10)).toString() + " " + settings.localization.days;
+			}
+				return r;
+			},
 
                     /*
                      * Function to update the timestamps of each tweet
                      */
-					updateTimestamps: function () {
-						var tweetMachine;
-						tweetMachine = this;
+			updateTimestamps: function () {
+				var tweetMachine;
+				tweetMachine = this;
                         // Loop over each timestamp
-						$(tweetMachine.container).find('.time').each(function () {
-							var originalTime, timeElement;
+			$(tweetMachine.container).find('.time').each(function () {
+				var originalTime, timeElement;
 
                             // Save a reference to the time element
-							timeElement = $(this);
+				timeElement = $(this);
                             
                             // Get the original time from the data stored on the timestamp
-							originalTime = timeElement.data('timestamp');
+				originalTime = timeElement.data('timestamp');
 
                             // Generate and show a new time based on the original time
-							timeElement.html(tweetMachine.relativeTime(originalTime));
-						});
-					},
+				timeElement.html(tweetMachine.relativeTime(originalTime));
+					});
+				},
 					
                     /*
                      * Function to parse the text of a tweet and and add links to links, hashtags, and usernames
                      */
-					parseText: function (text) {
+			parseText: function (text) {
                         // Links
-						text = text.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/g, function (m) {
-							return '<a href="' + m + '" target="_blank">' + m + '</a>';
-						});
+			text = text.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/g, function (m) {
+				return '<a href="' + m + '" target="_blank">' + m + '</a>';
+					});
                         // Usernames
-						text = text.replace(/@[A-Za-z0-9_]+/g, function (u) {
-							return '<a href="http://twitter.com/#!/' + u.replace(/^@/, '') + '" target="_blank">' + u + '</a>';
-						});
+			text = text.replace(/@[A-Za-z0-9_]+/g, function (u) {
+				return '<a href="http://twitter.com/#!/' + u.replace(/^@/, '') + '" target="_blank">' + u + '</a>';
+					});
                         // Hashtags
-						text = text.replace(/#[A-Za-z0-9_\-]+/g, function (u) {
-							return '<a href="http://twitter.com/#!/search?q=' + u.replace(/^#/, '%23') + '" target="_blank">' + u + '</a>';
-						});
-						return text;
+			text = text.replace(/#[A-Za-z0-9_\-]+/g, function (u) {
+				return '<a href="http://twitter.com/#!/search?q=' + u.replace(/^#/, '%23') + '" target="_blank">' + u + '</a>';
+					});
+				return text;
 					},
 
                     /*
                      * Function to build the tweet as a jQuery object
                      */
-					buildTweet: function (tweet) {
-						var tweetMachine, tweetObj;
-						tweetMachine = this;
+			buildTweet: function (tweet) {
+				var tweetMachine, tweetObj;
+				tweetMachine = this;
 
                         // Create the tweet from the tweetFormat setting
-						tweetObj = $(tweetMachine.settings.tweetFormat);
+				tweetObj = $(tweetMachine.settings.tweetFormat);
                         
                         // Set the avatar. NOTE: reasonably_small is Twitter's suffix for the largest square avatar that they store
 						tweetObj.find('.avatar')
