@@ -1,0 +1,35 @@
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+body {
+	 background: url('/jquery-tweetMachine/assets/img/07.jpg') no-repeat;
+     padding-top: 20px;
+     padding-bottom: 40px;
+}
+
+/* Custom container */
+.container-narrow {
+    margin: 0 auto;
+    max-width: 700px;
+}
+.container-narrow > hr {
+    margin: 30px 0;
+}
+
+
+/* ==========================================================================
+   TweetMachine
+   ========================================================================== */
+h2{
+	font-size:32px;
+	padding-bottom:0px;
+	padding-top:0px;
+	margin:0px;
+}
+.tweet{
+	background: url('/jquery-tweetMachine/assets/img/trans.png');
+	padding:15px 0px;
+	margin-bottom:15px;
+}
+
