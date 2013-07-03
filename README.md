@@ -149,6 +149,16 @@ You can filter tweets by providing a function that returns true if a tweet is to
 
 ## Changelog
 
+### `v0.2.1b`
+
+- Added functionality to retrieve feed from username only. Additional endpoint 'statuses/user_timeline'
+- Added user_name 
+- Added include_retweets
+- Added exclude_replies
+- tweetMachine.js updated
+- tweetMachine.min.js updated
+
+		
 ### `v0.2.1a`
 
 - Changed file paths so the script doesn't have to be installed in the root
