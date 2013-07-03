@@ -23,7 +23,7 @@ By default, the plugin uses a backend script located at `/ajax/getFromTwitter.ph
 
 I have now added the ability to retrieve a twitter feed by username only using an additional endpoint "statuses/user_timeline" and adding some additional parameters to the settings.
 
-To acheive this effect please see example below, please replace "user_name" with your own.
+To acheive this effect please see example below, please replace the username "jason_alvis" with your own.
 
     $('#tweets').tweetMachine('', { 
     	backendScript: '/inc/newBackend.php' 
