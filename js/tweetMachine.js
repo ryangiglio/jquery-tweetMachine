@@ -1,6 +1,6 @@
 /*
- * jQuery TweetMachine v0.2.1a
- *
+ * jQuery TweetMachine v0.2.1b
+ * GitHub: https://github.com/ryangiglio/jquery-tweetMachine
  * Copyright (c) 2013 Ryan Giglio (@ryangiglio)
  */
 (function ($) {
@@ -22,7 +22,7 @@
 				}
                 // If a tweet interval is already set up
 				if (this.tweetMachine.interval) {
-                    // Refresh now so the new settings can kick in
+                    // Refresh now so the new settings can kick in  
 					this.tweetMachine.refresh();
 				}
                 // If a new callback was passed
@@ -34,6 +34,9 @@
 				settings = $.extend({
 					backendScript:  'ajax/getFromTwitter.php', // Path to your backend script that holds your Twitter credentials and calls the API
 					endpoint:       'search/tweets', // Twitter API endpoint to call. Currently only search/tweets is supported
+					user_name:		'jason_alvis', // Set your username
+					include_retweets: true, // Set to true or false if you want to include retweets
+					exclude_replies: false, // Set to true or false if you want to exclude replies
 					rate:           5000, // Rate in ms to refresh the tweets. Any higher than 5000 for search/tweets will get you rate limited
 					limit:          5, // Number of tweets to display at a time
 					autoRefresh:    true, // CURRENTLY REQUIRED. Auto-refresh the tweets
@@ -189,14 +192,29 @@
                         // If it is the first load or we're refreshing automatically
 						if (firstLoad || tweetMachine.settings.autoRefresh) {
                             // Set the query parameters that the endpoint needs
+                            
                             /*
-                             * TODO These will vary depending on the endpoint
+                             * Twitter feed for search through tweets only
+                             * API Reference: https://dev.twitter.com/docs/api/1.1/get/search/tweets
                              */
                             if (tweetMachine.settings.endpoint === "search/tweets") {
                                 queryParams = {
                                     q: tweetMachine.query,
                                     count: (this.settings.requestLimit) ? this.settings.requestLimit: this.settings.limit,
                                     since_id: tweetMachine.lastTweetID
+                                };
+                            }
+
+                            /*
+                             * Twitter feed for username only
+                             * API Reference: https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline
+                             */							
+                            if (tweetMachine.settings.endpoint === "statuses/user_timeline") {
+                                queryParams = {
+                                    screen_name: settings.user_name,
+                                    count: (this.settings.requestLimit) ? this.settings.requestLimit: this.settings.limit,
+                                    include_rts: settings.include_retweets,
+                                    exclude_replies: settings.exclude_replies
                                 };
                             }
 

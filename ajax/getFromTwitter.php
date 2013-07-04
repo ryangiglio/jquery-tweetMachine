@@ -62,10 +62,25 @@
     /*
      * If Twitter returned statuses, the request was successful
      */
-    if ( isset($tweets->statuses) ) {
-        echo json_encode($tweets->statuses);
-    }
-    else { // There was a problem somewhere
-        // Return the error Twitter sent so Javascript can parse it and display the error
-        echo json_encode($tweets->errors);
-    }
+     
+	// Method if you are using endpoint "search/tweets"
+	if ($endpoint === "search/tweets") {
+		if ( isset($tweets->statuses) ) {
+        	echo json_encode($tweets->statuses);
+		}
+		else { // There was a problem somewhere
+        	// Return the error Twitter sent so Javascript can parse it and display the error
+			echo json_encode($tweets->errors);
+		}
+	}
+
+	// Method if you are using endpoint "statuses/user_timeline"
+	if ($endpoint === "statuses/user_timeline") {
+    	if ( isset($tweets[0]->user->id) ) {
+        	echo json_encode($tweets);
+		}
+		else { // There was a problem somewhere
+        	// Return the error Twitter sent so Javascript can parse it and display the error
+			echo json_encode($tweets->errors);
+		}
+	}
