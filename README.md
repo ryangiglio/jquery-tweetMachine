@@ -19,6 +19,22 @@ By default, the plugin uses a backend script located at `/ajax/getFromTwitter.ph
         { backendScript: '/inc/newBackend.php' }
     );
 
+## Feed by Username Only
+
+I have now added the ability to retrieve a twitter feed by username only using an additional endpoint "statuses/user_timeline" and adding some additional parameters to the settings.
+
+To acheive this effect please see example below, please replace the username "jason_alvis" with your own.
+
+    $('#tweets').tweetMachine('', { 
+    	backendScript: '/inc/newBackend.php' 
+		endpoint: 'statuses/user_timeline',
+		user_name: 'jason_alvis',
+		include_retweets: true,
+		exclude_replies: false,
+		limit: 5,
+		autoRefresh: false    
+    });
+
 A complete list of options is at the bottom of this readme
 
 ## Backend setup
@@ -30,9 +46,19 @@ Sample scripts in different languages are coming soon. If you're interested in c
     // Path to your backend script that holds your Twitter credentials and calls the API
     backendScript:  '/ajax/getFromTwitter.php'
 
-    // Twitter API endpoint to call. Currently only search/tweets is supported
-    endpoint:       'search/tweets'
+    // Twitter API endpoint to call.
+    endpoint:       'search/tweets' (search only)
+    endpoint:       'statuses/user_timeline' (username only)
 
+	// Display Twitter feed by username only (used when your using the 'statuses/user_timeline' endpoint)
+    user_name:       'jason_alvis'
+    
+	// Display retweets either true or false (used when your using the 'statuses/user_timeline' endpoint)
+    include_retweets: true
+    
+	// Exclude replies either true or false (used when your using the 'statuses/user_timeline' endpoint)
+    exclude_replies: false
+        
     // Rate in ms to refresh the tweets. The 'search/tweets' endpoint has a rate limit of 180 calls per 15 minutes,
     // so any higher than 5000 will get you rate limited
     rate:           5000
@@ -123,6 +149,16 @@ You can filter tweets by providing a function that returns true if a tweet is to
 
 ## Changelog
 
+### `v0.2.1b`
+
+- Added functionality to retrieve feed from username only. Additional endpoint 'statuses/user_timeline'
+- Added user_name 
+- Added include_retweets
+- Added exclude_replies
+- tweetMachine.js updated
+- tweetMachine.min.js updated
+
+		
 ### `v0.2.1a`
 
 - Changed file paths so the script doesn't have to be installed in the root
