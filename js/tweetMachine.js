@@ -34,7 +34,8 @@
 				settings = $.extend({
 					backendScript:  'ajax/getFromTwitter.php', // Path to your backend script that holds your Twitter credentials and calls the API
 					endpoint:       'search/tweets', // Twitter API endpoint to call. Currently only search/tweets is supported
-					user_name:		'jason_alvis', // Set your username
+					user_name:		'shqipthash', // Set your username
+					list_slug:		'international-vip',			  // Set your List Slug (required only when using lists/statuses)
 					include_retweets: true, // Set to true or false if you want to include retweets
 					exclude_replies: false, // Set to true or false if you want to exclude replies
 					rate:           5000, // Rate in ms to refresh the tweets. Any higher than 5000 for search/tweets will get you rate limited
@@ -59,7 +60,7 @@
 					query: query, // Set the query to search for
 					interval: false, // This will hold the refresh interval when it is created
 					container: this, // Set the object that contains the tweets
-					lastTweetID: null, // This will hold the ID of the last tweet displayed
+					lastTweetID: 1, // This will hold the ID of the last tweet displayed
 					callback: callback, // This callback will run after each refresh
 
                     /*
@@ -217,6 +218,19 @@
                                     exclude_replies: settings.exclude_replies
                                 };
                             }
+														                            /*
+                             * Twitter feed for list tweets
+                             * API Reference: https://dev.twitter.com/docs/api/1.1/get/lists/statuses
+                             */							
+                            if (tweetMachine.settings.endpoint === "lists/statuses") {
+                                queryParams = {
+									slug: settings.list_slug,
+									owner_screen_name: settings.user_name, 
+   								    count: (this.settings.requestLimit) ? this.settings.requestLimit: this.settings.limit,
+                                    include_rts: settings.include_retweets,
+									since_id: tweetMachine.lastTweetID
+                                };
+                            }
 
                             // Call your backend script to get JSON back from Twitter
 							$.getJSON(tweetMachine.settings.backendScript, {
@@ -362,7 +376,7 @@
 						$(tweetMachine.container).find('.tweet').remove();
 
                         // Set the lastTweetID to null so we start clean next time
-						tweetMachine.lastTweetID = null;
+						tweetMachine.lastTweetID = 1;
 					}
 				};
 

@@ -84,3 +84,17 @@
 			echo json_encode($tweets->errors);
 		}
 	}
+	
+	// Method if you are using endpoint "lists/statuses"
+	if ($endpoint === "lists/statuses") 
+	{
+		if ( isset($decoded_json[0]->user->id) ) 
+		{
+			echo json_encode($decoded_json);
+		}
+		else 
+		{ // There was a problem somewhere
+			// Return the error Twitter sent so Javascript can parse it and display the error
+			echo json_encode($decoded_json->errors);
+		}
+	}

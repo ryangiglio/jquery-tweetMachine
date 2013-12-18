@@ -34,6 +34,23 @@ To acheive this effect please see example below, please replace the username "ja
 		limit: 5,
 		autoRefresh: false    
     });
+	
+## Feed by User Lists
+
+I have now added the ability to retrieve a twitter feed by user list only using an additional endpoint "lists/statuses" and adding some additional parameters to the settings.
+
+To acheive this effect please see example below, please replace the user_name "jason_alvis" and list_slug your-list-slug with your own.
+
+    $('#tweets').tweetMachine('', { 
+    	backendScript: '/inc/newBackend.php' 
+		endpoint: 'statuses/user_timeline',
+		user_name: 'jason_alvis',
+		list_slug: 'your-list-slug',
+		include_retweets: true,
+		exclude_replies: false,
+		limit: 5,
+		autoRefresh: false    
+    });
 
 A complete list of options is at the bottom of this readme
 
