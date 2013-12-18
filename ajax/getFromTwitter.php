@@ -76,7 +76,7 @@
 
 	// Method if you are using endpoint "statuses/user_timeline"
 	if ($endpoint === "statuses/user_timeline") {
-    	if ( isset($tweets[0]->user->id) ) {
+    		if ( isset($tweets[0]->user->id) ) {
         	echo json_encode($tweets);
 		}
 		else { // There was a problem somewhere
@@ -86,15 +86,12 @@
 	}
 	
 	// Method if you are using endpoint "lists/statuses"
-	if ($endpoint === "lists/statuses") 
-	{
-		if ( isset($tweets[0]->user->id) ) 
-		{
+	if ($endpoint === "lists/statuses") {
+		if ( isset($tweets[0]->user->id) ) {
 			echo json_encode($tweets);
 		}
-		else 
-		{ // There was a problem somewhere
-			// Return the error Twitter sent so Javascript can parse it and display the error
+		else { // There was a problem somewhere
+		// Return the error Twitter sent so Javascript can parse it and display the error
 			echo json_encode($tweets->errors);
 		}
 	}
