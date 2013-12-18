@@ -218,7 +218,8 @@
                                     exclude_replies: settings.exclude_replies
                                 };
                             }
-														                            /*
+							
+							/*							                            /*
                              * Twitter feed for list tweets
                              * API Reference: https://dev.twitter.com/docs/api/1.1/get/lists/statuses
                              */							
