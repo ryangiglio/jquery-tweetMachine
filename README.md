@@ -26,7 +26,7 @@ I have now added the ability to retrieve a twitter feed by username only using a
 To acheive this effect please see example below, please replace the username "jason_alvis" with your own.
 
     $('#tweets').tweetMachine('', { 
-    	backendScript: '/inc/newBackend.php' 
+    	backendScript: '/inc/newBackend.php',
 		endpoint: 'statuses/user_timeline',
 		user_name: 'jason_alvis',
 		include_retweets: true,
@@ -42,7 +42,7 @@ I have now added the ability to retrieve a twitter feed by user list only using 
 To acheive this effect please see example below, please replace the user_name "jason_alvis" and list_slug your-list-slug with your own.
 
     $('#tweets').tweetMachine('', { 
-    	backendScript: '/inc/newBackend.php' 
+    	backendScript: '/inc/newBackend.php',
 		endpoint: 'statuses/user_timeline',
 		user_name: 'jason_alvis',
 		list_slug: 'your-list-slug',
