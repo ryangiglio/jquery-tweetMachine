@@ -226,7 +226,7 @@
 								var tweetsDisplayed;
 
                                 // If we got a response from Twitter
-                                if ( tweets[0] ) {
+                                if ( tweets!==null && tweets[0] ) {
                                     // If there is an error message
                                     if ( tweets[0].message ) {
                                         // If there is already an error displayed
