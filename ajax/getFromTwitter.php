@@ -63,24 +63,31 @@
      * If Twitter returned statuses, the request was successful
      */
      
+    function callbackable_json($data) {
+      if($_GET['callback']) {
+        return $_GET['callback'] . '(' . json_encode($data) . ')';
+      } else {
+        return json_encode($data);
+      }
+    }
 	// Method if you are using endpoint "search/tweets"
 	if ($endpoint === "search/tweets") {
 		if ( isset($tweets->statuses) ) {
-        	echo json_encode($tweets->statuses);
+        	echo callbackable_json($tweets->statuses);
 		}
 		else { // There was a problem somewhere
         	// Return the error Twitter sent so Javascript can parse it and display the error
-			echo json_encode($tweets->errors);
+			echo callbackable_json($tweets->errors);
 		}
 	}
 
 	// Method if you are using endpoint "statuses/user_timeline"
 	if ($endpoint === "statuses/user_timeline") {
     	if ( isset($tweets[0]->user->id) ) {
-        	echo json_encode($tweets);
+        	echo callbackable_json($tweets);
 		}
 		else { // There was a problem somewhere
         	// Return the error Twitter sent so Javascript can parse it and display the error
-			echo json_encode($tweets->errors);
+			echo callbackable_json($tweets->errors);
 		}
 	}
