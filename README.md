@@ -147,6 +147,16 @@ You can filter tweets by providing a function that returns true if a tweet is to
         }
     });
 
+## Dependencies
+
+tweetMachine requires a LAMP stack with php cURL installed.
+
+On an Ubuntu Server simply enter the following commands:
+
+	$ sudo apt-get install php5-curl
+	
+	$ sudo service apache2 restart
+
 ## Changelog
 
 ### `v0.2.1b`
